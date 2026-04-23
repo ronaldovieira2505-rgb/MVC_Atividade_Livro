@@ -1,0 +1,67 @@
+< !DOCTYPE
+html >
+< html
+lang = "pt" >
+< head >
+< meta
+charset = "UTF-8" >
+< title > Livraria
+Phygital - MVP < / title >
+< style >
+.livro - card
+{border: 1px solid  # ccc; padding: 10px; margin: 10px; border-radius: 8px; }
+.preco {color: green;
+font - weight: bold;}
+< / style >
+    < / head >
+        < body >
+        < h1 > Catálogo
+de
+Livros < / h1 >
+           < div
+id = "lista-livros" >
+     < / div >
+
+         < script >
+// Função
+simples
+para
+simular
+a
+interacção
+da
+View
+com
+o
+Controller
+async function
+carregarLivros()
+{
+    const
+response = await fetch('/api/livros');
+const
+livros = await response.json();
+const
+container = document.getElementById('lista-livros');
+
+container.innerHTML = livros.map(livro= > `
+                      < div
+
+
+class ="livro-card" >
+
+< h3 >${livro.titulo} < / h3 >
+< p >${livro.sinopse} < / p >
+< p
+
+
+class ="preco" > R$ ${livro.preco.toFixed(2)} < / p >
+
+< / div >
+`).join('');
+}
+
+carregarLivros();
+< / script >
+    < / body >
+        < / html >
